@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script>
+      function init() {
+        stage = new createjs.Stage("demoCanvas");
+        createjs.Ticker.on("tick", tick);
+        bltImg = new createjs.Bitmap("images/cannon-ball.png");
+        bltImg.scaleX = 0.2;
+        bltImg.scaleY = 0.2;
+        bltImg.x = 400;
+        bltImg.y = 450;
+
+        const IsShoot = false;
+        img1 = new createjs.Bitmap("images/img1.jpg");
+        img1.scaleX = 0.5;
+        img1.scaleY = 0.5;
+        img1.x = 50;
+        img1.y = 50;
+        img1.addEventListener("click", function (event) {
+          createjs.Ticker.paused = true;
+          imgGrey1 = new createjs.Bitmap("images/img-grey1.jpg");
+          img1.image = imgGrey1.image;
+          shoot(img1);
+        });
+
+        img2 = new createjs.Bitmap("images/img2.jpg");
+        img2.scaleX = 0.5;
+        img2.scaleY = 0.5;
+        img2.x = 220;
+        img2.y = 50;
+        img2.addEventListener("click", function (event) {
+          createjs.Ticker.paused = true;
+          imgGrey2 = new createjs.Bitmap("images/img-grey2.jpg");
+          img2.image = imgGrey2.image;
+          shoot(img2);
+        });
+
+        img3 = new createjs.Bitmap("images/img3.jpg");
+        img3.scaleX = 0.5;
+        img3.scaleY = 0.5;
+        img3.x = 390;
+        img3.y = 50;
+        img3.addEventListener("click", function (event) {
+          createjs.Ticker.paused = true;
+          imgGrey3 = new createjs.Bitmap("images/img-grey3.jpg");
+          img3.image = imgGrey3.image;
+          shoot(img3);
+        });
+
+        img4 = new createjs.Bitmap("images/img4.jpg");
+        img4.scaleX = 0.5;
+        img4.scaleY = 0.5;
+        img4.x = 560;
+        img4.y = 50;
+        img4.addEventListener("click", function (event) {
+          createjs.Ticker.paused = true;
+          imgGrey4 = new createjs.Bitmap("images/img-grey4.jpg");
+          img4.image = imgGrey4.image;
+          shoot(img4);
+        });
+
+        stage.addChild(img1, img2, img3, img4, bltImg);
+
+        // createjs.Ticker.setFPS(20);
+      }
+
+      function tick(event) {
+        if (!event.paused) {
+          img1.x = img1.x + 5;
+          if (img1.x > stage.canvas.width) {
+            img1.x = 0;
+          }
+          img2.x = img2.x + 5;
+          if (img2.x > stage.canvas.width) {
+            img2.x = 0;
+          }
+          img3.x = img3.x + 5;
+          if (img3.x > stage.canvas.width) {
+            img3.x = 0;
+          }
+          img4.x = img4.x + 5;
+          if (img4.x > stage.canvas.width) {
+            img4.x = 0;
+          }
+        } else {
+          createjs.Ticker.removeAllEventListeners();
+        }
+        stage.update(event); // important!!
+      }
+      function shoot(img) {
+        bltImg.x = img.x + 40;
+        bltImg.y = img.y + 65;
+
+        stage.addChild(bltImg);
+      }
+    </script>
+  </head>
+  <body onload="init();">
+    <canvas id="demoCanvas" width="900" height="600"></canvas>
+  </body>
+</html>
