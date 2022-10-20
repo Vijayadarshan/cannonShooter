@@ -5,10 +5,16 @@
       function init() {
         stage = new createjs.Stage("demoCanvas");
         createjs.Ticker.on("tick", tick);
+        cnnImg = new createjs.Bitmap("images/cannon.png");
         bltImg = new createjs.Bitmap("images/cannon-ball.png");
+        cnnImg.scaleX = 0.3;
+        cnnImg.scaleY = 0.3;
+        cnnImg.x = 400;
+        cnnImg.y = 450;
+
         bltImg.scaleX = 0.2;
         bltImg.scaleY = 0.2;
-        bltImg.x = 400;
+        bltImg.x = 430;
         bltImg.y = 450;
 
         const IsShoot = false;
@@ -60,7 +66,7 @@
           shoot(img4);
         });
 
-        stage.addChild(img1, img2, img3, img4, bltImg);
+        stage.addChild(img1, img2, img3, img4, bltImg, cnnImg);
 
         // createjs.Ticker.setFPS(20);
       }
